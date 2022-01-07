@@ -1,0 +1,43 @@
+<head th:insert="fragments/head :: head"></head>
+
+<div class="container mt-5 mb-5">
+    <h1><strong>[[${tituloEditar}]]</strong></h1>
+    <form th:action="@{/contacto/{id}(id= ${contactoEditar.id})}" th:object="${contactoEditar}" method="POST">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Ingresa Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" th:field="*{nombre}">
+            <!--            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+            <div th:errors="*{nombre}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Ingresa Apellido</label>
+            <input type="text" class="form-control" id="apellido" aria-describedby="emailHelp" th:field="*{apellido}">
+            <div th:errors="*{apellido}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="indicativo" class="form-label">Ingresa Indicativo del país</label>
+            <input type="text" class="form-control" id="indicativo" th:field="*{indicativo}">
+            <div th:errors="*{indicativo}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="celular" class="form-label">Ingresa Número Movil</label>
+            <input type="text" class="form-control" id="celular" th:field="*{celular}">
+            <div th:errorclass="error" th:errors="*{celular}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="correo" class="form-label">Ingresa Correo Electrónico</label>
+            <input type="email" class="form-control" id="correo" th:field="*{correo}">
+            <div th:errors="*{correo}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="fecha_nacimiento" class="form-label">Ingresa Fecha Nacimiento</label>
+            <input type="date" class="form-control" id="fecha_nacimiento" th:field="*{fecha_nacimiento}">
+            <div th:errors="*{fecha_nacimiento}"></div>
+        </div>
+        <a th:href="@{/contacto/}" class="btn btn-secondary">Regresar</a>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+    </form>
+</div>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>

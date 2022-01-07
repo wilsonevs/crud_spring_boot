@@ -1,0 +1,29 @@
+<head th:insert="fragments/head :: head"></head>
+
+<div class="container mt-5 mb-5">
+    <h1><strong>[[${titulo}]]</strong></h1>
+    <form th:action="@{/estudiante/}" th:object="${estudianteNuevo}" method="POST">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Ingresa Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" th:field="*{nombre}" th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" th:errorClass="invalid-feedback"></div>
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Ingresa Apellido</label>
+            <input type="text" class="form-control" id="apellido" th:field="*{apellido}" th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" th:errorClass="invalid-feedback"></div>
+        </div>
+        <div class="mb-3">
+            <label for="correo" class="form-label">Ingresa Correo Electrónico</label>
+            <input type="email" class="form-control" id="correo" th:field="*{correo}" th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}" th:errorClass="invalid-feedback"></div>
+        </div>
+        <div class="text-end">
+            <a th:href="@{/estudiante/}" class="btn btn-secondary">Regresar</a>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </div>
+    </form>
+</div>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>

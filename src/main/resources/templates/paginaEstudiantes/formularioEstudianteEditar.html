@@ -1,0 +1,24 @@
+<head th:insert="fragments/head :: head"></head>
+
+<div class="container mt-5 mb-5">
+    <h1><strong>[[${titulo}]]</strong></h1>
+    <form th:action="@{/estudiante/{id}(id= ${estudianteEditar.id})}" th:object="${estudianteEditar}" method="POST">
+        <div class="mb-3">
+            <label for="inputUno" class="form-label">Ingresa Nombre</label>
+            <input type="text" class="form-control" id="inputUno" aria-describedby="emailHelp" th:field="*{nombre}">
+<!--            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+        </div>
+        <div class="mb-3">
+            <label for="inputDos" class="form-label" >Ingresa Apellido</label>
+            <input type="text" class="form-control" id="inputDos"  th:field="*{apellido}">
+        </div>
+        <div class="mb-3">
+            <label for="inputTres" class="form-label" >Ingresa Correo Electrónico</label>
+            <input type="text" class="form-control" id="inputTres" th:field="*{correo}">
+        </div>
+        <a th:href="@{/estudiante/}" class="btn btn-secondary">Regresar</a>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>

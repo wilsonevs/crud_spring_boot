@@ -1,0 +1,24 @@
+server:
+  port: 8090
+spring:
+  #1. Conexión a BD MySQL
+  datasource:
+    url: jdbc:mysql://localhost:3307/bd_crud?useSSL=false&serverTimeZone=UTC
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Pilotof1*
+
+  #2. Jpa nos permite resolver problemas de almacenamiento de los objetos en una base de datos relacional
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+
+
+#3. Nos muestre los log de las consulta de la BD.
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug

@@ -1,0 +1,66 @@
+<head th:insert="fragments/head :: head"></head>
+
+<div th:if="${mensaje != null}">
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+             class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
+             aria-label="Warning:">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </svg>
+        <div>
+            [[${mensaje}]]
+            <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+</div>
+
+
+<div class="container my-5">
+    <div class="row">
+        <h1>[[${titulo}]] <a th:href="@{/contacto/nuevoContacto}"><i class="fas fa-user-plus"></i></a></h1>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Indicativo</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Correo</th>
+                <th scope="col">F.Nacimiento</th>
+                <th scope="col">F.Registro</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contacto : ${contactos}">
+                <th scope="row">[[${contacto.id}]]</th>
+                <td>[[${contacto.nombre}]]</td>
+                <td>[[${contacto.apellido}]]</td>
+                <td>[[${contacto.indicativo}]]</td>
+                <td>[[${contacto.celular}]]</td>
+                <td>[[${contacto.correo}]]</td>
+                <td>[[${#temporals.format(contacto.fecha_nacimiento,'YY/MMM/dd EEE')}]]</td>
+                <td>[[${#temporals.format(contacto.fecha_registro,'dd/MM/YYYY hh:mm a')}]]</td>
+                <th scope="col">
+                    <a th:href="@{/contacto/{id}(id=${contacto.id})}"><i class="fas fa-user-minus"></i></a>
+<!--                    <a onclick="confirmacionEliminarContacto(this)"><i class="fas fa-user-minus"></i></a>-->
+                    <a th:href="@{/contacto/editar/{id}(id=${contacto.id})}"><i class="fas fa-user-edit"></i></a>
+<!--                    <form th:action="@{/contacto/{id}(id=${contacto.id})}" method="POST"></form>-->
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--<script>-->
+<!--    function confirmacionEliminarContacto(elemento){-->
+<!--        var ok = confirm('¿Estas seguro de eliminar, el contacto?');-->
+<!--        if(ok){-->
+<!--            elemento.nextElementSibling.submit();-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+
+<footer th:replace="fragments/footer :: footer"></footer>
